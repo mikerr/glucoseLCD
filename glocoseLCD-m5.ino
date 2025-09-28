@@ -131,11 +131,10 @@ void setup(void) {
 }
 
 void loop() {
-  M5.Display.clearDisplay();
-
   auth();
   fetchData();
-
+  
+   M5.Display.clearDisplay();
    M5.Display.setCursor(0, 0);
    M5.Display.setTextSize(1);
   int space = timestamp.indexOf(" ");
@@ -150,5 +149,8 @@ void loop() {
    M5.Display.setTextSize(1);
    M5.Display.println("mmol/L");
   
+   int power = M5.Power.getBatteryLevel();
+   M5.Display.progressBar(120,0,30,10,power);
+   
   sleep(60);
 }
